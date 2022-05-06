@@ -23,52 +23,52 @@ const text = [
 ];
 
 // 1. Uniamo i 3 array di sopra in un array di oggetti
-const data = [];
+// const data = [];
 
-for (let i = 0; i < images.length; i++) {
-    data.push({
-        image: images[i],
-        title: title[i],
-        text : text[i]
-    });
-}
+// for (let i = 0; i < images.length; i++) {
+//     data.push({
+//         image: images[i],
+//         title: title[i],
+//         text : text[i]
+//     });
+// }
 
-console.log(data);
+// console.log(data);
 
-const itemsContainer  = document.querySelector('.items');
-const thumbsContainer = document.getElementsByClassName('thumbs')[0]; // document.querySelector('.thumbs')
-let currentSlide      = 0; // ci posizioniamo sulla prima slide
+// const itemsContainer  = document.querySelector('.items');
+// const thumbsContainer = document.getElementsByClassName('thumbs')[0]; // document.querySelector('.thumbs')
+// let currentSlide      = 0; // ci posizioniamo sulla prima slide
 
 createItems();
 createThumbnails();
 
-// Slide precedente
-document.querySelector('.prev').addEventListener('click', function() {
+// // Slide precedente
+// document.querySelector('.prev').addEventListener('click', function() {
 
-    // se sono alla prima, mi posiziono sull'ultima
-    if (currentSlide == 0) {
-        currentSlide = data.length - 1; // ultima
-    } else {
-        currentSlide--; // precedente
-    }
+//     // se sono alla prima, mi posiziono sull'ultima
+//     if (currentSlide == 0) {
+//         currentSlide = data.length - 1; // ultima
+//     } else {
+//         currentSlide--; // precedente
+//     }
 
-    console.log('Prev', currentSlide);
-    changeActive(currentSlide);
-});
+//     console.log('Prev', currentSlide);
+//     changeActive(currentSlide);
+// });
 
-// Slide successiva
-document.querySelector('.next').addEventListener('click', function() {
+// // Slide successiva
+// document.querySelector('.next').addEventListener('click', function() {
 
-    // se sono all'ultima, mi posiziono sulla prima
-    if (currentSlide == data.length - 1) {
-        currentSlide = 0; // prima
-    } else {
-        currentSlide++; // successiva
-    }
+//     // se sono all'ultima, mi posiziono sulla prima
+//     if (currentSlide == data.length - 1) {
+//         currentSlide = 0; // prima
+//     } else {
+//         currentSlide++; // successiva
+//     }
 
-    console.log('Next', currentSlide);
-    changeActive(currentSlide);
-});
+//     console.log('Next', currentSlide);
+//     changeActive(currentSlide);
+// });
 
 function changeActive(index) {
 
@@ -82,26 +82,26 @@ function changeActive(index) {
 }
 
 // creiamo le slides
-function createItems() {
-    for (let i = 0; i < data.length; i++) {
-        let elem = data[i];
+// function createItems() {
+//     for (let i = 0; i < data.length; i++) {
+//         let elem = data[i];
 
-        // aggiungiamo la classe active alla prima slide (currentSlide = 0)
-        let firstActive = '';
-        if (i == currentSlide) {
-            firstActive = 'active';
-        }
+//         // aggiungiamo la classe active alla prima slide (currentSlide = 0)
+//         let firstActive = '';
+//         if (i == currentSlide) {
+//             firstActive = 'active';
+//         }
 
-        itemsContainer.innerHTML +=
-        `<div class="item ${firstActive}">
-            <img src="${elem.image}" alt="${elem.title}">
-            <div class="text">
-                <h3>${elem.title}</h3>
-                <p>${elem.text}</p>
-            </div>
-        </div>`;
-    }
-}
+//         itemsContainer.innerHTML +=
+//         `<div class="item ${firstActive}">
+//             <img src="${elem.image}" alt="${elem.title}">
+//             <div class="text">
+//                 <h3>${elem.title}</h3>
+//                 <p>${elem.text}</p>
+//             </div>
+//         </div>`;
+//     }
+// }
 
 // creiamo le thumbnails
 function createThumbnails() {

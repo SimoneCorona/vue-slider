@@ -2,6 +2,7 @@ const app = new Vue (
     {
         el: '#root',
         data: {
+            currentSlide : 0,
             states : [
                 {
                     title : 'Svezia',
@@ -21,7 +22,7 @@ const app = new Vue (
                 {
                     title : 'Germania',
                     images : 'img/04.jpg',
-                    text :     'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
+                    text :   'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
                 },
                 {
                     title : 'Paradise',
@@ -29,7 +30,47 @@ const app = new Vue (
                     text :     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
                 },
             ]
-        }
+        },
+        methods : { prevSlide: function() {
+
+                    // se sono alla prima, mi posiziono sull'ultima
+                    if (currentSlide == 0) {
+                    currentSlide = states.length - 1; // ultima
+                    } else {
+                    currentSlide--; // precedente
+                    }
+        
+                    changeActive(currentSlide);
+                },
+                nextSlide: function() {
+
+                    // se sono all'ultima, mi posiziono sulla prima
+                    if (currentSlide == states.length - 1) {
+                        currentSlide = 0; // prima
+                    } else {
+                        currentSlide++; // successiva
+                    }
+
+                    changeActive(currentSlide);
+                },
+                createThumbnails: function () {
+
+                    for (let i = 0; i < data.length; i++) {
+                        let elem = data[i];
+                
+                        // aggiungiamo la classe active alla prima thumbnail (currentSlide = 0)
+                        let firstActive = '';
+                        if (i == currentSlide) {
+                            firstActive = 'active';
+                        }
+                
+                        thumbsContainer.innerHTML +=
+                            `<div class="thumb ${firstActive}">
+                                <img src="${elem.image}" alt="${elem.title}">
+                            </div>`;
+                    }
+                }
+        }    
     }
 );
 
