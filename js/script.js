@@ -7,12 +7,12 @@ const app = new Vue (
                 {
                     title : 'Svezia',
                     images : 'img/01.jpg',
-                    text : 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.',
+                    text :   'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.',
                 },
                 {
                     title : 'Svizzera',
                     images : 'img/02.jpg',
-                    text :     'Lorem ipsum',
+                    text :   'Lorem ipsum',
                 },
                 {
                     title : 'Gran Bretagna',
@@ -27,49 +27,29 @@ const app = new Vue (
                 {
                     title : 'Paradise',
                     images : 'img/05.jpg',
-                    text :     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
+                    text :   'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
                 },
             ]
         },
-        methods : { prevSlide: function() {
+        methods : { 
+            prevSlide: function() {
 
                     // se sono alla prima, mi posiziono sull'ultima
-                    if (currentSlide == 0) {
-                    currentSlide = states.length - 1; // ultima
+                    if (this.currentSlide == 0) {
+                        this.currentSlide = this.states.length - 1; // ultima
                     } else {
-                    currentSlide--; // precedente
+                        this.currentSlide--; // precedente
                     }
-        
-                    changeActive(currentSlide);
                 },
-                nextSlide: function() {
+            nextSlide: function() {
 
                     // se sono all'ultima, mi posiziono sulla prima
-                    if (currentSlide == states.length - 1) {
-                        currentSlide = 0; // prima
+                    if (this.currentSlide == this.states.length - 1) {
+                        this.currentSlide = 0; // prima
                     } else {
-                        currentSlide++; // successiva
+                        this.currentSlide++; // successiva
                     }
-
-                    changeActive(currentSlide);
                 },
-                createThumbnails: function () {
-
-                    for (let i = 0; i < data.length; i++) {
-                        let elem = data[i];
-                
-                        // aggiungiamo la classe active alla prima thumbnail (currentSlide = 0)
-                        let firstActive = '';
-                        if (i == currentSlide) {
-                            firstActive = 'active';
-                        }
-                
-                        thumbsContainer.innerHTML +=
-                            `<div class="thumb ${firstActive}">
-                                <img src="${elem.image}" alt="${elem.title}">
-                            </div>`;
-                    }
-                }
         }    
     }
 );
